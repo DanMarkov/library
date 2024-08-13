@@ -15,15 +15,52 @@
         </header>
     
         <main>
-            <div class="container">
-                <div class="book_container">
-                    <h3>title</h3>
-                    <h4>Author</h4>
-                    <div class="horizontal_line"></div>
-                    <p>Pages</p>
-                    <p>Not read yet</p>
-                </div>
+            <dialog id="favDialog">
+                <form>
+                  <p>
+                    <ul>
+                        <li>
+                            <label for="title">Enter Title:</label>
+                            <input type="text" name="title" id="title">
+                        </li>
+                        <li>
+                            <label for="author">Enter Author:</label>
+                            <input type="text" name="author" id="author">
+                        </li>
+                        <li>
+                            <label for="pages">Enter Pages:</label>
+                            <input type="number" name="pages" id="pages">
+                        </li>
+                        <li>
+                            <label for="read">Did you read this book?
+                                <select name="read" id="read">
+                                    <option>True</option>
+                                    <option>False</option>
+                                </select>
+                            </label>
+                            
+                        </li>
+                    </ul>
+                  </p>
+                  <div>
+                    <button value="cancel" formmethod="dialog">Cancel</button>
+                    <button id="confirmBtn" value="default">Confirm</button>
+                  </div>
+                </form>
+              </dialog>
+            <div class="button-container">
+                <button type="button" id="showDialog">NEW BOOK</button>
+                <output></output>
             </div>
+                <div class="container" id="container">
+                    <!-- <div class="book_container">
+                        <h3>Title</h3>
+                        <h4>Author</h4>
+                        <div class="horizontal_line"></div>
+                        <p>Pages</p>
+                        <p>Not read yet</p>
+                    </div> -->
+                </div>
         </main>
     </div>
 </body>

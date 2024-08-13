@@ -28,6 +28,51 @@ const myLibrary = [
   }
 ];
 
+
+function bookBox(title, author, pages, isRead) {
+
+  const container = document.querySelector("#container");
+  const book_container = document.createElement("div");
+  book_container.classList.add("book_container");
+  
+  container.appendChild(book_container);
+  
+  const h3 = document.createElement("h3");
+  h3.textContent = title;
+  book_container.appendChild(h3);
+  
+  const h4 = document.createElement("h4");
+  h4.textContent = author;
+  book_container.appendChild(h4);
+  
+  const hline = document.createElement("div");
+  hline.classList.add("horizontal_line");
+  book_container.appendChild(hline);
+  
+  const p = document.createElement("p");
+  p.textContent = pages;
+  book_container.appendChild(p);
+  
+  const read = document.createElement("p");
+  read.textContent = isRead;
+  book_container.appendChild(read);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete this book!";
+  deleteButton.classList.add("delete-button");
+  // deleteButton.setAttribute("data-book", "0");
+  // for (let i = 0; i < myLibrary.length; i++) {
+  //   deleteButton.setAttribute("data-book", i);
+  // }
+  // deleteButton.forEach((button, i) => {
+  //   button.setAttribute("data-book", i);
+  // });
+  book_container.appendChild(deleteButton);
+
+}
+
+// bookBox();
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -44,3 +89,66 @@ function addBookToLibrary() {
 }
 
 // addBookToLibrary();
+
+
+function wholeBookLibrary(library) {
+  for (let i = 0; i < library.length; i++) {
+    console.log(library[i]);
+    bookBox(library[i].title, library[i].author, library[i].pages, library[i].read);
+  }
+}
+
+wholeBookLibrary(myLibrary);
+
+function setAttributeButton() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button, i) => {
+    button.setAttribute("data-book", i);
+  });
+}
+
+setAttributeButton();
+
+
+// dialog code // 
+
+
+const showButton = document.getElementById("showDialog");
+const favDialog = document.getElementById("favDialog");
+const outputBox = document.querySelector("output");
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const pages = document.getElementById("pages");
+const selectEl = favDialog.querySelector("select");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+
+// "Show the dialog" button opens the <dialog> modally
+showButton.addEventListener("click", () => {
+  favDialog.showModal();
+});
+
+// "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+favDialog.addEventListener("close", (e) => {
+  // outputBox.value = `ReturnValue: ${favDialog.returnValue}.`; 
+});
+
+function returnValue() {
+  const addedBooks = {
+    title: title.value,
+    author: author.value,
+    pages: pages.value,
+    read: selectEl.value
+  };
+
+  myLibrary.push(addedBooks);
+  bookBox(myLibrary[myLibrary.length-1].title, myLibrary[myLibrary.length-1].author, myLibrary[myLibrary.length-1].pages, myLibrary[myLibrary.length-1].read);
+  return setAttributeButton();
+}
+
+// Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // We don't want to submit this fake form
+  favDialog.close(returnValue()); // Have to send the select box value here.
+});
+
+// dialog code end // 
