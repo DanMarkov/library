@@ -80,3 +80,8 @@ main {
     line-height: 80%;
 }
 
+.book_container .status {
+    cursor: pointer;
+    user-select: none;
+}
+

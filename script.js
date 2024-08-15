@@ -54,19 +54,13 @@ function bookBox(title, author, pages, isRead) {
   book_container.appendChild(p);
   
   const read = document.createElement("p");
+  read.classList.add("status");
   read.textContent = isRead;
   book_container.appendChild(read);
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete this book!";
   deleteButton.classList.add("delete-button");
-  // deleteButton.setAttribute("data-book", "0");
-  // for (let i = 0; i < myLibrary.length; i++) {
-  //   deleteButton.setAttribute("data-book", i);
-  // }
-  // deleteButton.forEach((button, i) => {
-  //   button.setAttribute("data-book", i);
-  // });
   book_container.appendChild(deleteButton);
 
 }
@@ -104,11 +98,44 @@ function setAttributeButton() {
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button, i) => {
     button.setAttribute("data-book", i);
+    // button.setAttribute("onClick", "delete_block()");
   });
 }
 
 setAttributeButton();
 
+function deleteButtons() {
+
+  const deleteButtons = document.querySelectorAll(".delete-button");
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const element = e.target.dataset;
+      console.log(element);
+      button.parentNode.remove();
+    });  
+
+  });
+}
+
+deleteButtons();
+
+function changeStatus() {
+
+  const statuses = document.querySelectorAll(".status");
+
+  statuses.forEach((status) => {
+    status.addEventListener("click", () => {
+      if (status.textContent === "true") {
+        return status.textContent = "false";
+      } else {
+        return status.textContent = "true";
+      }
+    });
+  });
+}
+
+changeStatus();
 
 // dialog code // 
 
@@ -142,6 +169,8 @@ function returnValue() {
 
   myLibrary.push(addedBooks);
   bookBox(myLibrary[myLibrary.length-1].title, myLibrary[myLibrary.length-1].author, myLibrary[myLibrary.length-1].pages, myLibrary[myLibrary.length-1].read);
+  deleteButtons();
+  changeStatus();
   return setAttributeButton();
 }
 
@@ -151,4 +180,6 @@ confirmBtn.addEventListener("click", (event) => {
   favDialog.close(returnValue()); // Have to send the select box value here.
 });
 
-// dialog code end // 
+// dialog end //
+
+
