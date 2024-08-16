@@ -111,7 +111,7 @@ function wholeBookLibrary(library) {
 wholeBookLibrary(myLibrary);
 
 function setAttributeButton() {
-  const deleteButtons = document.querySelectorAll(".delete-button");
+  const deleteButtons = document.querySelectorAll(".delete_button");
   deleteButtons.forEach((button, i) => {
     button.setAttribute("data-book", i);
     // button.setAttribute("onClick", "delete_block()");
@@ -122,7 +122,7 @@ setAttributeButton();
 
 function deleteButtons() {
 
-  const deleteButtons = document.querySelectorAll(".delete-button");
+  const deleteButtons = document.querySelectorAll(".delete_button");
 
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -141,11 +141,11 @@ function changeStatus() {
   const statuses = document.querySelectorAll(".status");
 
   statuses.forEach((status) => {
-    // if (status.textContent === "Yes") {
-    //   status.classList.add("yes_sign");
-    // } else {
-    //   status.classList.remove("yes_sign");
-    // }
+    if (status.textContent === "Yes") {
+      status.classList.add("yes_sign");
+    } else {
+      status.classList.remove("yes_sign");
+    }
 
     status.addEventListener("click", () => {
       if (status.textContent === "Yes") {
