@@ -136,24 +136,43 @@ function deleteButtons() {
 
 deleteButtons();
 
+function changeArrayStatus() {
+  myLibrary.forEach((book) => {
+    if (book.read === "No") {
+      return book.read = "Yes";
+    } else {
+      return book.read = "No";
+    }
+  });
+
+}
+
+
 function changeStatus() {
 
   const statuses = document.querySelectorAll(".status");
 
   statuses.forEach((status) => {
     if (status.textContent === "Yes") {
+      changeArrayStatus();
       status.classList.add("yes_sign");
     } else {
+      changeArrayStatus();
       status.classList.remove("yes_sign");
     }
 
     status.addEventListener("click", () => {
+    for (let i = 0; i < myLibrary.length; i++) {
+      console.log(myLibrary[i]);
+    }
       if (status.textContent === "Yes") {
         status.classList.remove("yes_sign");
+        changeArrayStatus();
         // status.style.background = "#e95644";
         return status.textContent = "No";
       } else {
         status.classList.add("yes_sign");
+        changeArrayStatus();
         // status.style.background = "#68e944";
         return status.textContent = "Yes";
       }
@@ -187,13 +206,8 @@ favDialog.addEventListener("close", (e) => {
 });
 
 function returnValue() {
-  const addedBooks = {
-    title: title.value,
-    author: author.value,
-    pages: pages.value,
-    read: selectEl.value
-  };
 
+  const addedBooks = new Book(title.value, author.value, pages.value, selectEl.value);
   myLibrary.unshift(addedBooks);
     // for (let i = 0; i < myLibrary.length; i++) {
     //   console.log(myLibrary[i]);
