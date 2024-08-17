@@ -94,6 +94,18 @@ function Book(title, author, pages, read) {
   };
 }
 
+Book.prototype.changeReadStatus = function() {
+  if (this.read === "Yes") {
+    return this.read = "No";
+  } else {
+    return this.read = "Yes";
+  }
+}
+
+
+
+
+
 function addBookToLibrary() {
   let userBook = prompt();
 }
@@ -227,3 +239,7 @@ confirmBtn.addEventListener("click", (event) => {
 // dialog end //
 
 
+const addedBooks = new Book(title.value, author.value, pages.value, selectEl.value);
+addedBooks.changeReadStatus();
+
+console.log(addedBooks.read);
