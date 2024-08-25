@@ -173,20 +173,24 @@ function changeStatus() {
       status.classList.remove("yes_sign");
     }
 
-    status.addEventListener("click", () => {
+    status.addEventListener("click", (e) => {
     for (let i = 0; i < myLibrary.length; i++) {
       console.log(myLibrary[i]);
     }
       if (status.textContent === "Yes") {
-        status.classList.remove("yes_sign");
+        // status.classList.remove("yes_sign");
+        e.target.classList.remove("yes_sign");
         changeArrayStatus();
         // status.style.background = "#e95644";
-        return status.textContent = "No";
+        // return status.textContent = "No";
+        return e.target.textContent = "No";
       } else {
-        status.classList.add("yes_sign");
+        // status.classList.add("yes_sign");
+        e.target.classList.add("yes_sign");
         changeArrayStatus();
         // status.style.background = "#68e944";
-        return status.textContent = "Yes";
+        // return status.textContent = "Yes";
+        return e.target.textContent = "Yes";
       }
     });
 
@@ -213,9 +217,9 @@ showButton.addEventListener("click", () => {
 });
 
 // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
-favDialog.addEventListener("close", (e) => {
+// favDialog.addEventListener("close", (e) => {
   // outputBox.value = `ReturnValue: ${favDialog.returnValue}.`; 
-});
+// });
 
 function returnValue() {
 
