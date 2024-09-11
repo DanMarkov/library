@@ -81,17 +81,18 @@ function bookBox(title, author, pages, isRead) {
 
 }
 
-// bookBox();
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  
-  this.info = function() {
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  info() {
     return `${this.title} by ${this.author}, ${this.pages} pages, not ${this.read} yet`;
-  };
+  }
 }
 
 Book.prototype.changeReadStatus = function() {
